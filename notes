@@ -1,0 +1,138 @@
+Functional Programming: A Guided Tour
+
+Functional Programming is a programming paradigm that can help you reduce code complexity while improving application reliability; but...how?
+In this talk, I'll take you on a guided tour down the path I took from learning JavaScript to incorporating functional techniques into my daily practice.
+Along the way, you'll learn what Functional Programming is, why it's useful, and how you can start using it today! 
+
+What did you want
+    / why did you want it
+    / what led to the creation of what you are demoing?
+
+What did you do to get what you wanted
+    / what did you do to create your thing
+    / what went wrong
+    / what went right?
+
+What did you learn
+    / what happened that you didn't expect
+    / what would you change if you had to do it over again
+    / what would you tell someone attempting the same thing?
+
+About me:
+  - first programming experience writing excel functions in loss mitigation @ CitiMortgage during the housing crisis
+  - learned SQL and VBA
+  - developed applications on MSOffice as a consultant
+  - 3/19/2013 1st SO post: Delete Row Loop Optimization VBA
+  - Software Engineering @ UTDallas: Intro to DS&A
+  - MakerSquare (now Hack Reactor @ Galvanize)
+  - JS at startups in LA since 2016
+
+Life:
+  - getting it to work is only the beginning
+    - iteration towards optimal solution is essential
+    - cost of development pales in comparison to cost of maintenance
+  - software complexity is a problem:
+    - simple is hard
+    - burnout stories are common
+    - trivial tasks made difficult and tedious due to tangled web of dependencies, state, and side-effects
+    - cost of development increases as difficulty to change code increases
+    - impossible to understand potential consequences of changes to untested code
+    - reading code you wrote and not understanding
+  - improving the legacy story by empathizing with the developers of tomorrow that will maintain code I write today
+    - legacy is untested code
+    - pure functions are easy to test
+    - constant improvement is possible because pure functions are easy to refactor
+    - changing code is not scary
+  - Clean Code (Uncle Bob):
+    - "The only way to go fast, is to go well."
+  - Composing Software (Eric Elliott)
+  - Professor Frisby's Mostly Adquate Guide to Functional Programming (Brian Lonsdorf aka DrBoolean)
+
+Influences:
+  - From Homogeneous Monolith to Heterogeneous Microservices Architecture (Chad Fowler): https://youtu.be/sAsRtZEGMMQ
+    - code has to be "this big"
+    - throw away code
+  - All the Little Things (Sandi Metz): https://youtu.be/8bZh5LMaSmE
+    - all the problems we create have the same simple solution: make smaller things and let them know as little about each other as possible
+    - code has a natural tendency to grow bigger; we repeat what we see
+    - it is far cheaper to keep duplication than it is to have to mess with the wrong abstraction
+    - open/closed principle: new behavior shouldn't require editing existing code
+
+JS:
+  - higher-order functions:
+    - function that takes a function argument and/or returns a function
+    - forEach, map, filter, reduce
+  - Arrays are functors
+  - closures
+    - make partial-application possible
+  const compose = (...fns) =>
+    (...args) => fns.reduceRight((x, f) => f(x), fns.pop()(...args))
+
+React:
+  - Pure Functions:
+    - All React components must act like pure functions with respect to their props.
+  - Declarative:
+    - Declarative views make your code more predictable and easier to debug.
+  - Composition:
+    - Build encapsulated components that manage their own state, then compose them to make complex UIs.
+    - The key feature of React is composition of components.
+      Components written by different people should work well together.
+      It is important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
+  - ReasonML - The language for writing React.:
+    - Reason's creator also created ReactJS, whose first prototypes were written in SML, a distant cousin of OCaml.
+      We've transcribed ReactML into ReactJS for wide adoption.
+      A few years later, we're now iterating on the future of ReactJS through ReasonReact.
+
+Redux:
+  - Immutability:
+    - Immutability can bring increased performance to your app, and leads to simpler programming and debugging, as data that never changes is easier to reason about than data that is free to be changed arbitrarily throughout your app.
+    - Immutable data management ultimately makes data handling safer.
+
+Pillars of Functional Programming:
+  - Pure functions over side effects:
+    - Referentially transparent
+    - Deterministic
+    - Cacheable
+    - Parallelizable
+    - Easy to reason about
+    - Easy to test
+    - Easy to refactor
+  
+  - Immutability over shared mutable state:
+    - No modification after creation
+    - Mutation is harder to reason about
+    - Mutation may have unexpected consequences
+    - Immutability simplifies
+  
+  - Composition over inheritance:
+    - (f ◦ g)(x) = f(g(x))
+    - Frees up cognitive resources
+    - Reduces signal-to-noise ratio
+    - Less surface area for bugs
+    - Partial application & currying
+  
+  - Declarative over imperative code:
+    - Imperative - how
+    - Declarative - what
+    - Details obfuscate the essence of the algorithm
+    - Self-documenting
+    - Decoupled
+    - Helps development
+
+lodash/fp & Ramda:
+  - Immutable auto-curried iteratee-first data-last methods (great for composing software!)
+  - lenses
+  - pipe/compose
+  - declarative alternatives to imperative code
+    - `get(path, source)` vs `source && source[i] && source[i][j] && source[i][j][k]`
+    - `set(path, val, target)` vs `a mess`
+    - `forEach((item, index, array) => {})` vs `for/for-in/for-of {}`
+    - `eq(a, b)` vs `a === b`
+    - `map(prop('a'))` vs `map(({ a }) => a)`
+    - `find(nameEq(name))` vs `find(item => item.name === name)`
+
+what's next?:
+  - combinators
+  - morphisms
+  - categories
+  - algebraic data types
